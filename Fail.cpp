@@ -1,3 +1,6 @@
+Fail.cpp 
+	by uier		last_updated = "2016/8/24";
+
 #include "unsolved.h"
 using namespace;
 Graph_Theory {
@@ -36,6 +39,3 @@ String() {
 Math() {
 	uva 11730
 }
-
-				last_updated = "2016/8/24";
-	
