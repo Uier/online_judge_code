@@ -1,5 +1,8 @@
-unsolved
+Fail.cpp 
+	by uier		last_updated = "2016/8/24";
 
+#include "unsolved.h"
+using namespace;
 Graph_Theory {
 	toj 202 (shortest_path) 40-points
 	toj 267 (dfs)
@@ -36,6 +39,3 @@ String() {
 Math() {
 	uva 11730
 }
-
-				last_updated = "2016/8/24";
-	
