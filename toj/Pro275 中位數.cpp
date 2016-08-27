@@ -1,25 +1,36 @@
-#include<stdio.h>
-#include<set> 
-#include<algorithm>
+#include <iostream>
+#include <set>
 using namespace std;
-multiset<double> st;
 int main()
 {
-	int j=0;
-    double n;
-    scanf("%lf",&n);
-    while ( n-- )
-    {
-		double a;
-		scanf("%lf",&a);
-		if ( j <= 2 )
-		{
-			
+	int n;
+	double a;
+ 	scanf("%d %lf", &n, &a);
+	printf("%.6lf\n", a);
+	multiset<double> s;
+	s.insert(a);
+	auto i=s.begin(), j=s.begin();
+	while ( --n ) {
+		scanf("%lf", &a);
+		s.insert(a);
+		if ( *i >= a ) {
+			if ( n%2 == 1 )
+				i--;
+			else
+				j--;
 		}
-		else
-		{
-		
+		else if ( *j <= a ) {
+			if ( n%2 == 1 )
+				j++;
+			else
+				i++;	
 		}
+		else {
+			i++;
+			j--;
+		}
+		printf("%.6lf\n", (*i+*j)/2);
 	}
-    return 0;
+	return 0;
 }
+
