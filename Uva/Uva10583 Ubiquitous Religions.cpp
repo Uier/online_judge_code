@@ -12,7 +12,6 @@ int main()
 	while ( cin >> n >> m ) {
 		if ( n == 0 )
 			break;
-		x++;
 		int ans=n;
 		for ( int i=1; i<=n; i++ ) p[i] = i;
 		while ( m-- ) {
@@ -22,6 +21,7 @@ int main()
 				ans--;
 			p[find(a)] = find(b);
 		}
+		x++;
 		cout << "Case " << x << ": " << ans << '\n';
 	}
 	return 0;
