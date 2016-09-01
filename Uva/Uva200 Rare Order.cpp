@@ -51,11 +51,9 @@ int main()
 				cout << a[0];
 			cout << '\n';
 			n = 0;
-			for ( int i=64; i<95; i++ ) {
-				I[i] = 0;
-				V[i] = false;
-				G[i].clear();			
-			}
+			memset(I, 0, sizeof(I));
+			memset(V, false, sizeof(V));
+			for ( int i=64; i<95; i++ )	G[i].clear();			
 		}
 	}
 	return 0;
