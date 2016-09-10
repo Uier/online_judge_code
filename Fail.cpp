@@ -1,5 +1,5 @@
 Fail.cpp 
-	by uier		last_updated = "2016/8/24";
+	by uier;
 
 #include "unsolved.h"
 using namespace;
@@ -8,15 +8,15 @@ Graph_Theory {
 	toj 267 (dfs)
 	toj 310
 	toj 206 (tree)
-	toj 324 (topological_sort)
-	uva 200 (topological_sort)
+	AC_toj 324 (topological_sort)
+	AC_uva 200 (topological_sort)
 	toj 166 
 	toj 335 visitors
 	return false;
 }
 Dynamic_Programming() {
 	toj 308
-	uva 108 (2D_sub_array_max_sum)
+	AC_uva 108 (2D_sub_array_max_sum)
 	uva 497 (Longest_increasing_subsequence)
 	return false;
 }
