@@ -1,28 +1,19 @@
-#include<bits/stdc++.h>
+#include <iostream>
 using namespace std;
-int weight[100005], value[100005];
-//	無限背包問題 
-void backpack(int c, int w)
-{
-	int dp[w+1]={0};	// dp表格, 目前的背包答案.
-	for ( int i=0; i<c; i++ )
-	{
-		for ( int j=weight[i]; j<=w; j++ )
-			dp[j] = max(dp[j], dp[j-weight[i]]+value[i]); 
-	}
-	cout << dp[w] << endl;
-}
-
+int w[100005], p[100005];
 int main()
 {
-	int v;
-	while ( cin >> v )
-	{
-		int n;	// v -> 承載量, n -> 物品個數. 
-		cin >> n;
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	int v, n;
+	while ( cin >> v >> n ) {
+		for ( int i=0; i<n; i++ )	cin >> w[i] >> p[i];
+		int dp[v+1];
+		for ( int i=0; i<v+1; i++ )	dp[i] = 0;
 		for ( int i=0; i<n; i++ )
-			cin >> weight[i] >> value[i];
-		backpack(n, v);
+			for ( int j=w[i]; j<=v; j++ )
+				dp[j] = max(dp[j],dp[j-w[i]]+p[i]);
+		cout << dp[v] << '\n';
 	}
 	return 0;
 }
