@@ -1,61 +1,22 @@
-#include<iostream>
-#include<cmath>
+#include <iostream>
 using namespace std;
 int main()
 {
+//	ios::sync_with_stdio(0);
+//	cin.tie(0);
+//	Fail 
 	int n, x, y;
 	cin >> n;
-	while ( n-- )
-	{
+	while ( n-- ) {
 		cin >> x >> y;
-		if ( x == 0 )
-		{
-			if ( y%2 == 0 )
-				cout << "YES" << endl;
-			else
-				cout << "NO" << endl;
-		}
-		else if ( x == 1 )
-		{
-			if ( y == 0 )
-				cout << "YES" << endl;
-			else
-				cout << "NO" << endl; 
-		}
-		else if ( x < 0 )
-		{
-			if ( x%2 != 0 )
-			{
-				if ( (abs(y) >= x*-1) && (y%2 == 0) && (y != 0) )
-					cout << "YES" << endl;
-				else
-					cout << "NO" << endl; 
-			}
-			else if ( y%2 == 0 )
-				cout << "YES" << endl; 
-			else if ( (y >= x) && (y <= x*-1) ) 
-				cout << "YES" << endl;
-			else
-				cout << "NO" << endl;
-		}
+		if ( (x==y) || (x>0 && x%2==1 && y>-x && y<=x+1) )
+			puts("YES");
+		else if ( x<0 && x%2==0 && y<-x && y>=x )
+			puts("YES");
+		else if ( y>0 && y%2==0 && ( (x>-y && x<y)||(x<=y && x<=1-y) ) )
+			puts("YES");
 		else
-		{
-			if ( x%2 == 0 )
-			{
-				if ( (y < 0) && (abs(y) >= x) && (y%2 == 0) )
-					cout << "YES" << endl;
-				else if ( (y > 0) && (abs(y) > x) && (y%2 == 0) )
-					cout << "YES" << endl;
-				else
-					cout << "NO" << endl; 
-			}
-			else if ( y%2 == 0 )
-				cout << "YES" << endl;
-			else if ( (y >= x*-1+1) && (y <= x+1) ) 
-				cout << "YES" << endl;
-			else
-				cout << "NO" << endl;
-		}
+			puts("NO");
 	}
 	return 0;
 }
