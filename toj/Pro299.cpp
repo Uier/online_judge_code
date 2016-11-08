@@ -1,42 +1,45 @@
 #include <iostream>
-#include <algorithm>
+#include <string.h>
 #include <math.h>
-//	20points 80-TLE
 using namespace std;
-typedef pair<int,int> L;
-L a[5010];
-long long ans;
-bool operator < (L x, L y) {
-	return x.first < y.first;
-}
-void check(int l, int r) {
-	long long sum=0;
-	for ( int i=l+1; i<r; i++ )
-		sum += a[i].second;
-	if ( sum==(a[l].second+1+a[r].second-1)*(r-l-1)/2 ) {
-		ans++;
-//		cout << "i: " << l << " j: " << r << " sum: " << sum << '\n';
-	}
-}
-int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-	int t, n;
-	cin >> t;
-	while ( t-- ) {
-		cin >> n;
-		for ( int i=1; i<=n; i++ ) {
-			cin >> a[i].first;
-			a[i].second = i;
-		}
-		sort(a+1,a+n+1);
-		ans = 0;
-		for ( int i=2; i<=n; i++ )
-			for ( int j=1; j<i; j++ )
-				if ( a[i].first-a[j].first == abs(a[i].second-a[j].second) )
-					check(j,i);
-		cout << ans << '\n';
-	}
+int t, n, a[5010], bit[5010];
+int sum(int i) {
+	if ( i > 0 )
+		return bit[i]+sum(i-(i&-i));
 	return 0;
 }
-
+void add(int i) {
+	if ( i > n )
+		return;
+	bit[i]++;
+	add(i+(i&-i));
+}
+bool cal(int l, int r) {
+    add(a[r]);
+    int p = min(a[l],a[r]);
+    int q = max(a[l],a[r]);
+    if ( q-p+1 == r-l+1 && sum(q)-sum(p-1) == q-p+1 )
+    	return true;
+    return false;
+} 
+int main() {
+      ios::sync_with_stdio(false);
+      cin.tie(0);
+    cin >> t;
+    while ( t-- ) {
+        memset(a,0,sizeof a);
+        cin >> n;
+        for ( int i=1; i<=n; i++ )
+            cin >> a[i];
+        int ans = 0;
+        for ( int i=1; i<n; i++ ) {
+        	memset(bit,0,sizeof bit);
+			add(a[i]);
+            for ( int j=i+1; j<=n; j++ )
+                if ( cal(i,j) )
+                    ans++;
+		}
+        cout << ans << '\n';
+    }
+    return 0;
+}
