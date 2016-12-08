@@ -1,42 +1,20 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <set>
 using namespace std;
-int main()
-{
-    int n, a;
-    
-    multiset<int> cld;
-    cld.clear();
-    
-    while ( scanf("%d", &n) )
-    {
-        if ( n == 0 )
-            break;
-        else if ( n == -1 )
-        {
-            if ( cld.size() != 0 )
-            {
-                a = 0;
-                a = *cld.begin();
-                printf("%d ", a);	
-                cld.erase(cld.find(a));	// erase(位址) 消一個
- 		    //	cld.erase(a);			// erase(數值) 消全部    
-            }
-        }
-        else if ( n == -2 )
-        {
-            if ( cld.size() != 0 )
-            {
-                a = 0;
-                a = *cld.rbegin();
-                printf("%d ", a);
-                cld.erase(cld.find(a));
-            //	cld.erase(a);
-            }
-        }
-        else
-            cld.insert(n);
-    }
-    cout << '\n';
-    
-    return 0;
+int n;
+multiset<int> S;
+void work(int x) {
+	cout << x << ' ';
+	S.erase(S.find(x));
+}
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	while ( cin >> n && n ) {
+		if ( n > 0 )	S.insert(n);
+		else if ( n == -1 && !S.empty() )	work(*S.begin());
+		else if ( n == -2 && !S.empty() )	work(*S.rbegin());
+	}
+	cout << '\n';
+	return 0;
 }
