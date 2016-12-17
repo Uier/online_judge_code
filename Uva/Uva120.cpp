@@ -18,10 +18,6 @@ void solve(int n) {
 			cout << y-z << ' ';
 			for ( int i=0; i<(z+1)/2; i++ )
 				swap(v[i],v[z-i]);
-			if ( v[n] == a[n] ) {
-				if ( n == 0 )	return;
-				else	solve(n-1);
-			}
 		}
 		cout << y-n << ' ';
 		for ( int i=0; i<(n+1)/2; i++ )
