@@ -1,44 +1,50 @@
 #include <iostream>
+#include <algorithm>
 #include <sstream>
 #include <vector>
 using namespace std;
+int x, y, z, a[50];	// y = v.size();
 vector<int> v;
-//	nonononononono
 void solve(int n) {
-	if ( v[n-1] == n )
-		if ( n == 1 )	return;
+	if ( v[n] == a[n] ) {
+		if ( n == 0 )	return;
 		else	solve(n-1);
+	}
 	else {
-		if ( v[0] != n ) {
-			int z = 0;
-			for ( int i=0; i<n-1; i++ )
-				if ( v[i] == n )
-					z = i+1;
-			cout << z << ' ';
-			for ( int i=0; i<z/2; i++ )
-				swap(v[i],v[z-1-i]);
+		if ( v[0] != a[n] ) {
+			for ( int i=0; i<n; i++ )
+				if ( v[i] == a[n] )
+					z = i;
+			cout << y-z << ' ';
+			for ( int i=0; i<(z+1)/2; i++ )
+				swap(v[i],v[z-i]);
+			if ( v[n] == a[n] ) {
+				if ( n == 0 )	return;
+				else	solve(n-1);
+			}
 		}
-		cout << v.size()-n+1 << ' ';
-		for ( int i=0; i<n/2; i++ )
-			swap(v[i],v[n-1-i]);
+		cout << y-n << ' ';
+		for ( int i=0; i<(n+1)/2; i++ )
+			swap(v[i],v[n-i]);
 		solve(n-1);
 	}
 }
 int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(0);
+    ios::sync_with_stdio(false);
+    cin.tie(0);
 	string s;
 	while ( getline(cin,s) ) {
 		v.clear();
 		istringstream ss(s);
-		int x;
-		while ( ss >> x )
+		y = 0;
+		while ( ss >> x ) {
 			v.push_back(x);
-		for ( int i=0; i<v.size(); i++ )
-			cout << v[i] << ((i==v.size()-1) ? '\n' : ' ');
-		solve(v.size());
+			a[y++] = x;
+		}
+		sort(a,a+v.size());
+		cout << s << '\n';
+		solve(v.size()-1);
 		cout << 0 << '\n';
 	}
 	return 0;
 }
-
