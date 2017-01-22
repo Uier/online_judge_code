@@ -1,0 +1,13 @@
+[Folder_start]
+DESKTOP,d,rw,b1
+AFOLDER,d,rw,a1
+[Folder_end]
+[File_start]
+A.TXT,f,rw,a1,DESKTOP
+[File_end]
+[Operation_start]
+a1,write,A.TXT,DESKTOP
+b1,write,A.TXT,AFOLDER
+a1,read,A.TXT,DESKTOP
+a1,del,QQQ,DESKTOP
+[Operation_end]
