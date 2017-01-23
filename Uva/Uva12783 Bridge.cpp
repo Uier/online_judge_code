@@ -12,7 +12,6 @@ bool V[MX], A[MX];
 void dfs(int x, int d) {
 	V[x] = true;
 	D[x] = d;
-	cout << "dfs ing...\n";
 	for ( int i : G[x] ) {
 		if ( V[i] )	// Back E
 			L[x] = min(L[x],D[i]);
@@ -32,7 +31,7 @@ main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 	int n, m;
-	while ( cin >> n >> m && n && m ) {
+	while ( cin >> n >> m && n ) ) {
 		memset(V,false,sizeof V);
 		memset(A,false,sizeof A);
 		R.clear();
@@ -47,31 +46,28 @@ main() {
 			G[a].push_back(b);
 			G[b].push_back(a);
 		}
+		dfs(0,0);
+		A[0] = true;
+		for ( int i=1; i<n; i++ )
+			if ( G[i].size() == 1 )	A[i] = true;
+			else
+				for ( int j : S[i] )
+					if ( L[j] >= D[i] ) {
+						A[i] = true;
+						break;
+					}
+		for ( int i=0; i<n; i++ )
+			if ( A[i] )
+				for ( int j : G[i] )
+					if ( A[j] )
+						R.push_back(PR{min(i,j),max(i,j)});
+		sort(R.begin(),R.end(),cmp);
+		auto it = unique(R.begin(),R.end());
+		R.resize(distance(R.begin(),it));
+		cout << R.size() << ((R.size()==0) ? '\n' : ' ');
+		for ( int i=0; i<R.size(); i++ )
+			cout << R[i].first << ' ' << R[i].second << ((i!=R.size()-1) ? ' ' : '\n');
 	}
-	dfs(0,0);
-	A[0] = true;
-	for ( int i=1; i<n; i++ )
-		if ( G[i].size() == 1 )	A[i] = true;
-		else
-			for ( int j : S[i] )
-				if ( L[j] >= D[i] ) {
-					A[i] = true;
-					break;
-				}
-	for ( int i=0; i<n; i++ )
-		if ( A[i] )
-			for ( int j : G[i] )
-				if ( A[j] )
-					R.push_back(PR{min(i,j),max(i,j)});
-	sort(R.begin(),R.end(),cmp);
-	auto it = unique(R.begin(),R.end());
-	R.resize(distance(R.begin(),it));
-	cout << R.size() << '\n';
-	for ( int i=0; i<R.size(); i++ )
-		if ( i != R.size()-1 )
-			cout << R[i].first << ' ' << R[i].second << ' ';
-		else
-			cout << R[i].first << ' ' << R[i].second << '\n';
 /*	
 	bridge
 	1.	¦³³ÎÂI	-> ¦³¾ô
