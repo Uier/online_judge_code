@@ -9,7 +9,10 @@ set<PR> A;
 vector<int> G[MX], S[MX];
 int L[MX], P[MX], T;
 bool V[MX];
-bool operator < (PR a, PR b)
+bool operator < (PR a, PR b) {
+	if ( a.first == b.first )	return a.second < b.second;
+	return a.first < b.first;
+}
 int dfs(int x, int fa) {
 	int Lx = P[x] = ++T;
 	int child = 0;
@@ -22,7 +25,7 @@ int dfs(int x, int fa) {
 				A.insert(PR{min(i,x),max(i,x)});
 		}
 		else if ( i != fa )
-			Lx = min(Lx,P[fa]);
+			Lx = min(Lx,P[i]);
 	}
 	return L[x] = Lx;
 }
@@ -50,8 +53,12 @@ main() {
 		}
 		dfs(0,-1);
 		cout << A.size() << ((A.size()==0) ? '\n' : ' ');
-		for ( auto i=A.begin(); i!=A.end(); i++ )
-			cout << *i.first << ' ' << *i.second << ((j==A.size()-1) ? '\n' : ' ');
+		int ccoott = 0;
+		for ( auto i=A.begin(); i!=A.end(); i++ ) {
+			PR tt = *i;
+			cout << tt.first << ' ' << tt.second << ((ccoott==A.size()-1) ? '\n' : ' ');
+			ccoott++;
+		}
 	}
 	return 0;
 }
