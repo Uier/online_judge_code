@@ -1,24 +1,14 @@
-Fail.cpp 
-	by uier;
-
-#include "unsolved.h"
-using namespace;
-Graph_Theory {
+Unsolve
+by uier
+Graph() {
 	toj 202 (shortest_path) 40-points
 	toj 267 (dfs)
 	toj 310
 	toj 206 (tree)
-	AC_toj 324 (topological_sort)
-	AC_uva 200 (topological_sort)
 	toj 166 
-	toj 335 visitors
-	return false;
 }
-Dynamic_Programming() {
-	toj 308
-	AC_uva 108 (2D_sub_array_max_sum)
-	uva 497 (Longest_increasing_subsequence)
-	return false;
+DP() {
+	uva 497 (Lis)
 }
 Matching() {
 	Bipartite_Graph_Multiple_Matching
@@ -33,7 +23,8 @@ Data Structure() {
 }
 String() {
 	KMP
-	AC自動機
+	AC automation
+	trie
 	Z
 }
 Math() {
