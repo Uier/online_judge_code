@@ -6,19 +6,16 @@
 using namespace std;
 typedef pair<int,int> PR;
 set<PR> A;
-vector<int> G[MX], S[MX];
+vector<int> G[MX];
 int L[MX], P[MX], T;
-bool V[MX];
 bool operator < (PR a, PR b) {
 	if ( a.first == b.first )	return a.second < b.second;
 	return a.first < b.first;
 }
 int dfs(int x, int fa) {
 	int Lx = P[x] = ++T;
-	int child = 0;
 	for ( int i : G[x] ) {
 		if ( !P[i] ) {
-			child++;
 			int Li = dfs(i,x);
 			Lx = min(Lx,Li);
 			if ( Li > P[x] )
@@ -37,12 +34,8 @@ main() {
 		T = 0;
 		memset(L,0,sizeof L);
 		memset(P,0,sizeof P);
-		memset(V,0,sizeof V);
 		A.clear();
-		for ( int i=0; i<n; i++ ) {
-			G[i].clear();
-			S[i].clear();
-		}
+		for ( int i=0; i<n; i++ )	G[i].clear();
 		for ( int i=0; i<m; i++ ) {
 			int a, b;
 			cin >> a >> b;
