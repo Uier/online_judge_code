@@ -4,6 +4,7 @@ using namespace std;
 typedef pair<int,int> pii;
 pii P[100010];
 bool cmp ( pii a, pii b ) {
+	if ( a.first == b.first )	return a.second < b.second;
 	return a.first < b.first;
 }
 main() {
@@ -14,7 +15,7 @@ main() {
     cin >> N >> A >> B;
     for ( int i=0; i<N; i++ )
         cin >> P[i].first >> P[i].second;
-    sort(P,P+N);
+    sort(P,P+N,cmp);
     if ( A == B )    cout << 0 << '\n';
     else {
         for ( int i=0; i<N; i++ )
