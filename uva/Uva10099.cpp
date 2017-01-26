@@ -1,43 +1,28 @@
 #include <iostream>
-#include <vector>
+#include <string.h>
 using namespace std;
-struct E {
-	int to, cost;
-};
-vector<E> G[105];
-int st, ed, ans;
-bool V[105];
-void dfs(int x, int sum) {
-	V[x] = true;
-	if ( x == ed )	ans = min(ans,sum);
-	for ( E i : G[x] )
-		if ( !V[i.to] )
-			dfs(i.to,min(sum,i.cost));
-}
 main() {
+	pair<int,int>
     ios::sync_with_stdio(false);
     cin.tie(0);
-	int n, m, tc = 0;
+	int n, m, tc = 0, st, ed, ls, G[105][105];
 	while ( cin >> n >> m && n ) {
-		for ( int i=1; i<=n; i++ ) {
-			G[i].clear();
-			V[i] = false;
-		}
+		memset(G,0,sizeof G);
 		for ( int i=0; i<m; i++ ) {
 			int a, b, c;
 			cin >> a >> b >> c;
-			G[a].push_back(E{b,c});
-			G[b].push_back(E{a,c});
+			G[a][b] = G[b][a] = c;
 		}
-		int lm = 0;
-		ans = 2e9;
-		cin >> st >> ed >> lm;
-		lm++;
-		dfs(st,2e9);
+		for ( int k=1; k<=n; k++ )
+			for ( int i=1; i<=n; i++ )
+				for ( int j=1; j<=n; j++ )
+					G[i][j] = max(G[i][j],min(G[i][k],G[k][j]));
+		cin >> st >> ed >> ls;
+		int ans = G[st][ed] - 1;
 		cout << "Scenario #" << ++tc << '\n';
 		cout << "Minimum Number of Trips = ";
-		if ( lm%ans )	cout << lm/ans+1 << '\n';
-		else	cout << lm/ans << '\n';
+		if ( ls%ans )	cout << ls/ans+1 << '\n';	
+		else	cout << ls/ans << '\n'; 
 		cout << '\n';
 	}
 	return 0;
