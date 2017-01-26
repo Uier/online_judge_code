@@ -20,7 +20,7 @@ int main() {
 	x = 0;
 	while ( cin >> d[x].a >> d[x].b )
 		d[x].c = x+1, x++;
-	sort(d,d+x);
+	sort(d,d+x); 
 	memset(p,-1,sizeof p);
 	int n=0, pt=0;
 	for ( int i=0; i<x; i++ ) {
