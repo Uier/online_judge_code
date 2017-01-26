@@ -16,6 +16,11 @@ int main() {
 		dp[i][i] = a[i];
 	}
 	solve(1,N);
+//	for ( int k=2; k<=N; k++ )
+//		for ( int i=1; i+k-1<=N; i++ ) {
+//			int j = i+k-1;
+//			dp[i][j] = p[j]-p[i-1]-min(dp[i+1][j],dp[i][j-1]);
+//		}
 	cout << dp[1][N] << ' ' << p[N]-dp[1][N] << '\n';
 	return 0;
 }
