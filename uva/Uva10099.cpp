@@ -32,8 +32,8 @@ main() {
 		int lm = 0;
 		ans = 2e9;
 		cin >> st >> ed >> lm;
-		lm++;
 		dfs(st,2e9);
+		ans--;
 		cout << "Scenario #" << ++tc << '\n';
 		cout << "Minimum Number of Trips = ";
 		if ( lm%ans )	cout << lm/ans+1 << '\n';
