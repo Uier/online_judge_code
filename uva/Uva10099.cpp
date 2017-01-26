@@ -13,12 +13,20 @@ main() {
 			cin >> a >> b >> c;
 			G[a][b] = G[b][a] = c;
 		}
+<<<<<<< HEAD
 		for ( int k=1; k<=n; k++ )
 			for ( int i=1; i<=n; i++ )
 				for ( int j=1; j<=n; j++ )
 					G[i][j] = max(G[i][j],min(G[i][k],G[k][j]));
 		cin >> st >> ed >> ls;
 		int ans = G[st][ed] - 1;
+=======
+		int lm = 0;
+		ans = 2e9;
+		cin >> st >> ed >> lm;
+		dfs(st,2e9);
+		ans--;
+>>>>>>> 5aff5f6591ce8a9c6dae5842dcfc566ffb8e3f24
 		cout << "Scenario #" << ++tc << '\n';
 		cout << "Minimum Number of Trips = ";
 		if ( ls%ans )	cout << ls/ans+1 << '\n';	
