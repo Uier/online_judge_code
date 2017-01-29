@@ -1,34 +1,33 @@
+//	undone
 #include <iostream>
 #include <algorithm>
-#include <string.h>
 using namespace std;
-int dp[5610][5610];
+int dp[5610];
+const int inf = 0x7ffffff;
 struct turtle {
-	int wei, cap;
+	int w, c;
 } a[5610];
 bool operator < (turtle x, turtle y) {
-	if ( x.cap == y.cap )	return x.wei < y.wei;
-	return x.cap < y.cap;
+	if ( x.c == y.c )	return x.w < y.w;
+	return x.c < y.c;
 }
 int main() {
 //	ios::sync_with_stdio(0);
 //	cin.tie(0);
-	int n = 1;
-	while ( cin >> a[n].wei >> a[n].cap ) {
-		a[n].cap -= a[n].wei;
+	int n = 1, ans = 1;
+	while ( cin >> a[n].w >> a[n].c ) {
+		a[n].c -= a[n].w;
+		dp[n] = inf;
 		n++;
 	}
+	n--;
 	sort(a+1,a+n);
-//	cout << "turtles\n";
-//	for ( int i=1; i<n; i++ )	
-//		cout << a[i].wei << ' ' << a[i].cap << '\n';
-	memset(dp,0, sizeof dp);
-	for ( int i=0; i<n; i++ ) {
-		for ( int j=1; j<n; j++ )
-			dp[i][j] = 2e9;
-	for ( int i=1; i<n; i++ ) {
-		for ( int j=1; j<n; j++ ) {
-			dp[i][j]
+	for ( int i=1; i<=n; i++ ) {
+		for ( int j=n; j>0; j-- ) {
+			if ( a[i].c >= dp[j-1] )
+				dp[j] = min(dp[j],dp[j-1]+a[i].w);
+			if ( dp[j] < inf )
+				ans = max(ans,j);
 		}
 	}
 	return 0;
