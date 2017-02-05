@@ -13,7 +13,7 @@ void init(int x) {
 		segL[i] = INF;
 	}
 }
-void update(int p, ll v) {
+void insert(int p, ll v) {
 	p += n-1;
 	segH[p] = v;
 	segL[p] = v;
@@ -47,7 +47,7 @@ int main() {
 	for ( int i=0; i<n2; i++ ) {
 		ll a;
 		cin >> a;
-		update(i,a);
+		insert(i,a);
 	}
 	while ( m-- ) {
 		int a, b;
