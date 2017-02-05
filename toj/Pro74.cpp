@@ -10,7 +10,6 @@ int main() {
 		L = s.size();
 		int* dp = new int[L];
 		memset(dp,-1,sizeof dp);
-		dp[0] = -1;
 		for ( int i=1, j=-1; i<L; i++ ) {
 			while ( j > -1 && s[i] != s[j+1] )	j = dp[j];
 			if ( s[i] == s[j+1] )	dp[i] = ++j;
