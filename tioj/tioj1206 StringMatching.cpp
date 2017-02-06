@@ -1,24 +1,30 @@
 #include <iostream>
 using namespace std;
-int failure[200005];
+int z[200005];
 int main() {
-//	ios::sync_with_stdio(0);
-//	cin.tie(0);
+	ios::sync_with_stdio(0);
+	cin.tie(0);
 	string s, t;
 	while ( cin >> s ) {
-		cout << "hello\n";
-		int l = s.size(), ans = 0;
+		int l = s.size(), ans = 0, L = 0, R = 0;
 		t.clear();
 		for ( int i=0; i<l; i++ )
 			t.push_back(s[l-1-i]);
-		int j = failure[0] = -1;
+		z[0] = l;
 		for ( int i=1; i<l; i++ ) {
-			while ( j != -1 && t[i] != t[j+1] )	j = failure[j];
-			if ( t[i] == t[j+1] )	j++;
-			failure[i] = j;
+			int ii = i-L, n = R+1-i;
+			if ( i > R || z[ii] >= n ) {
+				int j = ((i>R) ? i : (R+1));
+				while ( j < l && t[j] == t[j-i] )	j++;
+				z[i] = j-i;
+				L = i;
+				R = j-1;
+			}
+			else
+				z[i] = z[ii];
+			if ( z[i] >= i )
+				ans = i;
 		}
-		for ( int i=0; i<l; i++ )
-			ans = max(ans,failure[i]+1);
 		cout << ans << '\n';
 	}
 	return 0;
