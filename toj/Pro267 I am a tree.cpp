@@ -36,8 +36,7 @@ void dfs_ans(int x, int fa, int w) {
 				if ( D[i.to].one.second < D[x].two.second+i.cost ) {
 					D[i.to].one.first = x;
 					D[i.to].one.second = D[x].two.second+i.cost;
-				} 
-				else if ( D[i.to].two.second < D[x].two.second+i.cost ) {
+				} else if ( D[i.to].two.second < D[x].two.second+i.cost ) {
 					D[i.to].two.first = x;
 					D[i.to].two.second = D[x].two.second+i.cost;
 				}
@@ -46,17 +45,17 @@ void dfs_ans(int x, int fa, int w) {
 		}
 }
 int main()  {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    int n;
-    cin >> n;
-    for ( int i=2; i<=n; i++ ) {
-        int a, b;
-        cin >> a >> b;
-        G[i].push_back({a,b});
-        G[a].push_back({i,b});
-    }
-    dfs_pre(1,0);
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	int n;
+	cin >> n;
+	for ( int i=2; i<=n; i++ ) {
+	    int a, b;
+	    cin >> a >> b;
+	    G[i].push_back({a,b});
+	    G[a].push_back({i,b});
+	}
+	dfs_pre(1,0);
 	dfs_ans(1,0,0);
 	int ans = D[1].one.second;
 	for ( int i=2; i<=n; i++ )
