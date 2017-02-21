@@ -22,7 +22,7 @@ int main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 	cin >> n >> ql >> qr;
-	int p = n;
+	long long p = n;
 	while ( p >= 2 ) {
 		p /= 2;
 		s = s*2+1;
