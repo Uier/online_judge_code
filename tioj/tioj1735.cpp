@@ -6,10 +6,14 @@ int main() {
 	int k;
 	string s;
 	while ( cin >> k >> s ) {
-		int row = 0, ans = 0;
+		int seg = 0, ans = 0;
 		for ( int i=0; i+k<s.size(); i++ ) {
-			( s[i] == s[i+k] ) ? (row+=1) : (row = 0);
-			if ( row >= k )	ans++;
+			if ( s[i] == s[i+k] )
+				seg++;
+			else
+				seg = 0;
+			if ( seg >= k )	
+				ans++;
 		}
 		cout << ans << '\n';
 	}
