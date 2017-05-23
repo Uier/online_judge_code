@@ -13,7 +13,7 @@ void build(int l, int r, int d) {
 }
 void modify(int x, int v, int l, int r, int d) {
 	if ( x < l || x > r )	return;
-	if ( x >= l && x <= r ) {
+	if ( x == l && x == r ) {
 		seg[d] = v;
 		return;
 	}
@@ -26,9 +26,7 @@ int query(int a, int b, int l, int r, int d) {
 	if ( a <= l && b >= r )	return seg[d];
 	if ( a > r || b < l )	return -2147483648;
 	int mid = (l+r)/2;
-	int xl = query(a,b,l,mid,d*2);
-	int xr = query(a,b,mid+1,r,d*2+1);
-	return max(xl,xr);
+	return max(query(a,b,l,mid,d*2),query(a,b,mid+1,r,d*2+1));
 }
 int main() {
 	ios::sync_with_stdio(0);
