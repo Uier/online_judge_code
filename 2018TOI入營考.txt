@@ -1,0 +1,54 @@
+- pA
+	分解化學式，元素照字典序輸出個數
+	有括號，元素可能是一個大寫或一個大寫+一個小寫
+	ex: 
+		input:	C6H12O6
+		output:	C:6
+				H:12
+				O:6 
+		
+		input:	Ca(CH3COO)2
+		output:	C:4
+				Ca:1
+				H:6
+				O:4
+
+- pB
+	給定一由字母組成之字串，問他是該系列之字串的第K大
+	K mod D 後輸出，從零開始算(最大的K = 0)
+	ex:
+		input:	50 CBA
+		output:	5
+			
+			ABC	0
+			ACB	1
+			BAC	2
+			BCA	3
+			CAB	4
+		->	CBA	5
+	
+	ex:
+		input:	5 BaaC
+		output: 2
+		
+			BCaa
+			BaCa
+		->	BaaC
+			CBaa
+			CaBa
+			CaaB
+			...
+
+- pC
+	變形費式數列，給定x1, x2, a, b, n
+	x3 = a*x1 + b*x2
+	x4 = a*x2 + b*x3
+	...	求 xn mod 1000000007
+	
+- pD
+	給定一矩形長寬，與N(N<=3000)個格子點(0<座標範圍<=10^6)
+	問最多可框住幾個點，矩形可平移，不可旋轉
+	
+- pE
+	給定N個數字，N次詢問，每次詢問L, R之間之最小值
+	(N<=10^5)
