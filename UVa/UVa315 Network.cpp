@@ -5,7 +5,7 @@
 #define maxn 100
 using namespace std;
 vector<int> G[100];
-int N, cnt = 0, V[maxn], A[maxn], D[maxn], L[maxn];
+int N, cnt = 0, A[maxn], D[maxn], L[maxn];
 void dfs(int x, int fa, int dep) {
 	D[x] = L[x] = dep;
 	int child = 0;

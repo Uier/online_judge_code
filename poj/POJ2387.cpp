@@ -5,17 +5,17 @@
 #define maxn 1005
 using namespace std;
 struct edge {
-	long long to, cost;
+	int to, cost;
 };
-long long D[maxn];
+int D[maxn];
 vector<edge> G[maxn];
 priority_queue<edge> PQ;
 bool operator < (edge x, edge y) {
 	return x.cost < y.cost;
 }
 int main() {
-	// ios::sync_with_stdio(false);
-	// cin.tie(0);
+	ios::sync_with_stdio(false);
+	cin.tie(0);
 	int T, N, a, b, c;
 	cin >> T >> N;
 	memset(D,0x3f,sizeof(D));
@@ -28,7 +28,7 @@ int main() {
 	PQ.push(edge{1,0});
 	while ( !PQ.empty() ) {
 		edge t = PQ.top();	PQ.pop();
-		if ( t.cost != D[t.to] )	continue;
+		if ( t.cost > D[t.to] )	continue;
 		int adj = G[t.to].size();
 		for ( int j=0; j<adj; ++j ) {
 			edge k = G[t.to][j];
