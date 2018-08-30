@@ -43,8 +43,8 @@ int main() {
 		cin >> a >> b;
 		if ( D[a] < D[b] )	swap(a,b);
 		if ( a == b )	cout << a << '\n';
-		else if ( F[0][a] == b )	
-			cout << min(a,b) << ' ' << max(a,b) << '\n'; 
+		else if ( F[0][a] == b )
+			cout << min(a,b) << ' ' << max(a,b) << '\n';
 		else {
 			int ans = lca(a,b), c = a;
 			int dist = D[a]+D[b]-D[ans]*2;
