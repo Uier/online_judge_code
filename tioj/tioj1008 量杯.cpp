@@ -2,7 +2,7 @@
 #include <vector>
 #include <map>
 #include <queue>
-#include <algorithm> 
+#include <algorithm>
 using namespace std;
 typedef pair<vector<int>,int> pvi;
 int n, ed, cas;

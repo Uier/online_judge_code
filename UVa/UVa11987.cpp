@@ -15,22 +15,22 @@ int main() {
 				cin >> u >> v;
 				int tu = find(u), tv = find(v);
 				if ( tu == tv )	continue;
-				if ( tp == 1 ) {
+				if ( tp == 1 ) { // union u v
 					p[tu] = tv;
 					cnt[tv-n] += cnt[tu-n];
 					sum[tv-n] += sum[tu-n];
 					cnt[tu-n] = sum[tu-n] = 0;
-				} else {
+				} else { // move u to set that v is
 					p[u] = tv;
 					cnt[tu-n]--;
 					sum[tu-n] -= u;
 					cnt[tv-n]++;
 					sum[tv-n] += u;
 				}
-			} else {
+			} else { // query
 				cin >> u;
 				u = find(u)-n;
-				cout << cnt[u] << ' ' << sum[u] << '\n';
+				cout << cnt[u] << ' ' << sum[u] << '\n'; 
 			}
 		}
 	}
