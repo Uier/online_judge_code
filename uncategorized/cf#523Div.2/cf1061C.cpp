@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <set>
-#define maxn 100005
+#include <math.h>
+#define maxn 1000005
 #define int long long
 using namespace std;
 int n, npr[maxn], arr[maxn];
@@ -20,7 +21,7 @@ long long dfs(int x, int l) {
 main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
-	for ( int i=2; i<maxn; ++i )
+	for ( int i=2; i*i<=sqrt(maxn); ++i )
 		if ( !npr[i] )
 			for ( int j=i*i; j<maxn; j+=i )
 				npr[j] = i;
