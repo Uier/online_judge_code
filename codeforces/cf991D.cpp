@@ -1,45 +1,27 @@
 #include <iostream>
 using namespace std;
-int st[105];
-bool V[105];
+int arr[105];
 int main() {
-	ios::sync_with_stdio(0);
+	ios::sync_with_stdio(false);
 	cin.tie(0);
-	string x, y;
-	cin >> x >> y;
-	int n = x.size();
+	string s[2];
+	cin >> s[0] >> s[1];
+	int n = s[0].size(), ans = 0;
+	for ( int i=0; i<n; ++i )	arr[i] = (s[0][i]=='0')+(s[1][i]=='0');
 	for ( int i=0; i<n; ++i ) {
-		if ( x[i] == '0' && y[i] == '0' )	st[i] = 0;
-		else if ( x[i] == '0' && y[i] == 'X' )	st[i] = 1;
-		else if ( x[i] == 'X' && y[i] == '0' )	st[i] = 2;
-		else	st[i] = 3;
-	}
-	int ans = 0, tmp = 0, row = 0;
-	for ( int i=0; i<n; ++i ) {
-		int l, r;
-		bool la = false, ra = false;
-		while ( i<n && st[i] != 0 )	i++;
-		if ( i>0 && st[i-1] < 3 ) { // augment
-			l = i-1;
-			la = 1;
-		} else l = i;
-		while ( i<n && st[i] == 0 ) i++;
-		i--;
-		if ( i<n-1 && st[i+1] < 3 ) { // augment
-			r = i+1;
-			ra = 1;
-			i++;
-		} else r = i;
-		int rl = l+(int)la, rr = r-(int)ra;
-		if ( rl == rr ) {
-			if ( la || ra )	ans++;
-		} else {
-			int k = (rr-rl)+1;
-			ans += k/3*2;
-			if ( k%3 == 1 && (la || ra) )	ans++;
-			if ( k%3 == 2 ) {
-				if ( la && ra )	ans += 2;
-				else	ans++;
+		if ( arr[i] == 1 ) {
+			if ( i+1 < n && arr[i+1] == 2 ) {
+				ans++;
+				i++;
+			}
+		} else if ( arr[i] == 2 ) {
+			if ( i+1 < n && arr[i+1] == 2 && i+2 < n && arr[i+2] == 2 ) {
+				ans += 2;
+				i += 2;
+			}
+			else if ( i+1 < n && arr[i+1] >= 1 ) {
+				ans++;
+				i++;
 			}
 		}
 	}
